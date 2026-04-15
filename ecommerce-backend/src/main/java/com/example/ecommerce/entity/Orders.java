@@ -29,7 +29,7 @@ public class Orders {
     private BigDecimal totalPrice;
 
     @TableField("status")
-    private Integer status;
+    private String status;
 
     @TableField("create_time")
     private LocalDateTime createTime;
