@@ -1,0 +1,78 @@
+﻿:root {
+  --bg-page: #f3f6fb;
+  --bg-panel: #ffffff;
+  --text-main: #1f2a37;
+  --text-sub: #6b7280;
+  --primary: #2563eb;
+  --primary-soft: #e8f0ff;
+  --line: #e5e7eb;
+  --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--text-main);
+  background: var(--bg-page);
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.page-desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.panel-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.toolbar-btn {
+  font-weight: 500;
+}
+
+.table-wrap .el-table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-wrap .el-table th.el-table__cell {
+  background: #f8fafc;
+  color: #374151;
+}
+
+.action-btn {
+  font-weight: 500;
+}

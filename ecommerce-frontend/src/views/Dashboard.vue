@@ -1,29 +1,32 @@
 ﻿<template>
-  <div class="dashboard-page" v-loading="loading">
-    <el-card class="welcome-card" shadow="never">
-      <h2>首页概览</h2>
-      <p>欢迎使用电商后台管理系统</p>
+  <div class="page-container" v-loading="loading">
+    <el-card class="panel-card banner-card" shadow="never">
+      <h2 class="banner-title">首页统计看板</h2>
+      <p class="banner-text">用于查看商家后台核心数据概览，便于快速了解当前业务状态。</p>
     </el-card>
 
-    <el-row :gutter="16" class="stats-row">
+    <el-row :gutter="16">
       <el-col :xs="24" :sm="12" :md="8">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-title">分类总数</div>
-          <div class="stat-value">{{ stats.categoryCount }}</div>
+        <el-card class="panel-card stat-card category" shadow="hover">
+          <div class="stat-label">分类总数</div>
+          <div class="stat-number">{{ stats.categoryCount }}</div>
+          <div class="stat-desc">当前系统中已维护的商品分类数量</div>
         </el-card>
       </el-col>
 
       <el-col :xs="24" :sm="12" :md="8">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-title">商品总数</div>
-          <div class="stat-value">{{ stats.productCount }}</div>
+        <el-card class="panel-card stat-card product" shadow="hover">
+          <div class="stat-label">商品总数</div>
+          <div class="stat-number">{{ stats.productCount }}</div>
+          <div class="stat-desc">当前系统中已录入的商品数量</div>
         </el-card>
       </el-col>
 
       <el-col :xs="24" :sm="12" :md="8">
-        <el-card class="stat-card" shadow="hover">
-          <div class="stat-title">订单总数</div>
-          <div class="stat-value">{{ stats.orderCount }}</div>
+        <el-card class="panel-card stat-card order" shadow="hover">
+          <div class="stat-label">订单总数</div>
+          <div class="stat-number">{{ stats.orderCount }}</div>
+          <div class="stat-desc">当前系统中已生成的订单数量</div>
         </el-card>
       </el-col>
     </el-row>
@@ -67,39 +70,59 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.dashboard-page {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.banner-card {
+  border: none;
+  background: linear-gradient(130deg, #eef4ff 0%, #f7fbff 65%, #ffffff 100%);
 }
 
-.welcome-card h2 {
-  margin: 0 0 8px;
-  font-size: 22px;
-}
-
-.welcome-card p {
+.banner-title {
   margin: 0;
-  color: #606266;
+  font-size: 24px;
+  color: #1f2a37;
 }
 
-.stats-row {
-  margin-bottom: 0;
-}
-
-.stat-card {
-  border-radius: 8px;
-}
-
-.stat-title {
-  color: #909399;
+.banner-text {
+  margin: 10px 0 0;
+  color: #4b5563;
   font-size: 14px;
 }
 
-.stat-value {
+.stat-card {
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-label {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.stat-number {
   margin-top: 12px;
-  font-size: 30px;
-  font-weight: 600;
-  color: #303133;
+  font-size: 34px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-desc {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.category {
+  border-left: 4px solid #3b82f6;
+}
+
+.product {
+  border-left: 4px solid #10b981;
+}
+
+.order {
+  border-left: 4px solid #f59e0b;
 }
 </style>

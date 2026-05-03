@@ -1,24 +1,27 @@
 ﻿<template>
-  <el-card class="page-card">
-    <template #header>
-      <div class="header-row">
-        <span>分类管理</span>
-        <el-button type="primary" @click="openAddDialog">新增分类</el-button>
+  <div class="page-container">
+    <div class="page-head">
+      <div>
+        <h2 class="page-title">分类管理</h2>
+        <p class="page-desc">可在此新增、编辑和删除商品分类信息。</p>
       </div>
-    </template>
+      <el-button type="primary" class="toolbar-btn" @click="openAddDialog">新增分类</el-button>
+    </div>
 
-    <el-table :data="tableData" v-loading="loading" border>
-      <el-table-column prop="id" label="ID" width="100" />
-      <el-table-column prop="name" label="分类名称" />
-      <el-table-column prop="createTime" label="创建时间" min-width="180" />
-      <el-table-column label="操作" width="200">
-        <template #default="{ row }">
-          <el-button link type="primary" @click="openEditDialog(row)">编辑</el-button>
-          <el-button link type="danger" @click="handleDelete(row.id)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </el-card>
+    <el-card class="panel-card table-wrap" shadow="never">
+      <el-table :data="tableData" v-loading="loading" stripe>
+        <el-table-column prop="id" label="ID" width="100" />
+        <el-table-column prop="name" label="分类名称" min-width="180" />
+        <el-table-column prop="createTime" label="创建时间" min-width="220" />
+        <el-table-column label="操作" width="180" fixed="right">
+          <template #default="{ row }">
+            <el-button link type="primary" class="action-btn" @click="openEditDialog(row)">编辑</el-button>
+            <el-button link type="danger" class="action-btn" @click="handleDelete(row.id)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+  </div>
 
   <el-dialog v-model="dialogVisible" :title="dialogTitle" width="420px">
     <el-form :model="form" label-width="80px">
@@ -131,15 +134,3 @@ onMounted(() => {
   loadList()
 })
 </script>
-
-<style scoped>
-.page-card {
-  min-height: 420px;
-}
-
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-</style>

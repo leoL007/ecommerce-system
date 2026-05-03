@@ -1,32 +1,35 @@
 ﻿<template>
-  <el-card class="page-card">
-    <template #header>
-      <div class="header-row">
-        <span>订单管理</span>
-        <el-button type="primary" @click="openAddDialog">新增订单</el-button>
+  <div class="page-container">
+    <div class="page-head">
+      <div>
+        <h2 class="page-title">订单管理</h2>
+        <p class="page-desc">可在此新增订单、修改订单状态和删除订单。</p>
       </div>
-    </template>
+      <el-button type="primary" class="toolbar-btn" @click="openAddDialog">新增订单</el-button>
+    </div>
 
-    <el-table :data="tableData" v-loading="loading" border>
-      <el-table-column prop="id" label="ID" width="80" />
-      <el-table-column prop="orderNo" label="订单号" min-width="160" />
-      <el-table-column prop="productName" label="商品名称" min-width="120" />
-      <el-table-column prop="quantity" label="数量" width="90" />
-      <el-table-column prop="totalPrice" label="总价" width="120" />
-      <el-table-column label="状态" width="120">
-        <template #default="{ row }">
-          <el-tag>{{ statusText(row.status) }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="createTime" label="创建时间" min-width="180" />
-      <el-table-column label="操作" width="200">
-        <template #default="{ row }">
-          <el-button link type="primary" @click="openEditStatusDialog(row)">编辑状态</el-button>
-          <el-button link type="danger" @click="handleDelete(row.id)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </el-card>
+    <el-card class="panel-card table-wrap" shadow="never">
+      <el-table :data="tableData" v-loading="loading" stripe>
+        <el-table-column prop="id" label="ID" width="80" />
+        <el-table-column prop="orderNo" label="订单号" min-width="160" />
+        <el-table-column prop="productName" label="商品名称" min-width="120" />
+        <el-table-column prop="quantity" label="数量" width="90" />
+        <el-table-column prop="totalPrice" label="总价" width="120" />
+        <el-table-column label="状态" width="120">
+          <template #default="{ row }">
+            <el-tag :type="statusType(row.status)" effect="light">{{ statusText(row.status) }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column prop="createTime" label="创建时间" min-width="180" />
+        <el-table-column label="操作" width="200" fixed="right">
+          <template #default="{ row }">
+            <el-button link type="primary" class="action-btn" @click="openEditStatusDialog(row)">编辑状态</el-button>
+            <el-button link type="danger" class="action-btn" @click="handleDelete(row.id)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-card>
+  </div>
 
   <el-dialog v-model="addDialogVisible" title="新增订单" width="520px">
     <el-form :model="addForm" label-width="90px">
@@ -111,6 +114,14 @@ const statusText = (status) => {
   if (status === 2) return '已发货'
   if (status === 3) return '已完成'
   return '未知'
+}
+
+const statusType = (status) => {
+  if (status === 0) return 'warning'
+  if (status === 1) return 'primary'
+  if (status === 2) return 'success'
+  if (status === 3) return 'info'
+  return ''
 }
 
 const resetAddForm = () => {
@@ -220,15 +231,3 @@ onMounted(() => {
   loadList()
 })
 </script>
-
-<style scoped>
-.page-card {
-  min-height: 420px;
-}
-
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-</style>
