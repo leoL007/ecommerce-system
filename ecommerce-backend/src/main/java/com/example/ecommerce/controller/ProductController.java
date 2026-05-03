@@ -56,4 +56,12 @@ public class ProductController {
     public Result<Boolean> delete(@PathVariable Long id) {
         return productService.removeById(id) ? Result.success(true) : Result.error("\u5220\u9664\u5931\u8d25");
     }
+
+    @GetMapping("/listByMerchant/{merchantId}")
+    public Result<List<Product>> listByMerchant(@PathVariable Long merchantId) {
+        LambdaQueryWrapper<Product> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Product::getMerchantId, merchantId)
+                .orderByDesc(Product::getCreateTime);
+        return Result.success(productService.list(queryWrapper));
+    }
 }

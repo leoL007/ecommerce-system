@@ -31,6 +31,12 @@ public class Orders {
     @TableField("status")
     private String status;
 
+    @TableField("merchant_id")
+    private Long merchantId;
+
+    @TableField("user_name")
+    private String userName;
+
     @TableField("create_time")
     private LocalDateTime createTime;
 }

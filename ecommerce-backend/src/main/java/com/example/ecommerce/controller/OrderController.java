@@ -56,4 +56,12 @@ public class OrderController {
     public Result<Boolean> delete(@PathVariable Long id) {
         return orderService.removeById(id) ? Result.success(true) : Result.error("\u5220\u9664\u5931\u8d25");
     }
+
+    @GetMapping("/listByMerchant/{merchantId}")
+    public Result<List<Orders>> listByMerchant(@PathVariable Long merchantId) {
+        LambdaQueryWrapper<Orders> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Orders::getMerchantId, merchantId)
+                .orderByDesc(Orders::getCreateTime);
+        return Result.success(orderService.list(queryWrapper));
+    }
 }

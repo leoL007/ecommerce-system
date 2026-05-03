@@ -31,6 +31,12 @@ public class Product {
     @TableField("description")
     private String description;
 
+    @TableField("merchant_id")
+    private Long merchantId;
+
+    @TableField("image_url")
+    private String imageUrl;
+
     @TableField("create_time")
     private LocalDateTime createTime;
 }
