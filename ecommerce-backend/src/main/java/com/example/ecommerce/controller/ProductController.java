@@ -57,6 +57,14 @@ public class ProductController {
         return productService.removeById(id) ? Result.success(true) : Result.error("\u5220\u9664\u5931\u8d25");
     }
 
+    @PostMapping("/deleteBatch")
+    public Result<Boolean> deleteBatch(@RequestBody List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return Result.error("\u8bf7\u9009\u62e9\u9700\u8981\u5220\u9664\u7684\u5546\u54c1");
+        }
+        return productService.removeByIds(ids) ? Result.success(true) : Result.error("\u6279\u91cf\u5220\u9664\u5931\u8d25");
+    }
+
     @GetMapping("/listByMerchant/{merchantId}")
     public Result<List<Product>> listByMerchant(@PathVariable Long merchantId) {
         LambdaQueryWrapper<Product> queryWrapper = new LambdaQueryWrapper<>();

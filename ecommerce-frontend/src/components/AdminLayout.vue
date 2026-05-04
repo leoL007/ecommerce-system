@@ -10,7 +10,7 @@
         <el-menu-item index="/admin/dashboard">首页统计</el-menu-item>
         <el-menu-item index="/admin/merchant">商家管理</el-menu-item>
         <el-menu-item index="/admin/category">分类管理</el-menu-item>
-        <el-menu-item index="/admin/product">商品管理</el-menu-item>
+        <el-menu-item index="/admin/product">商品列表</el-menu-item>
         <el-menu-item index="/admin/order">订单管理</el-menu-item>
       </el-menu>
     </el-aside>
@@ -21,7 +21,10 @@
           <div class="header-title">平台管理员后台</div>
           <div class="header-sub">管理商家账号与全站业务数据</div>
         </div>
-        <el-button type="danger" plain @click="logout">退出登录</el-button>
+        <div class="header-actions">
+          <el-button type="primary" plain @click="goShop">查看前台商品页</el-button>
+          <el-button type="danger" plain @click="logout">退出登录</el-button>
+        </div>
       </el-header>
 
       <el-main class="layout-main">
@@ -41,6 +44,10 @@ const activePath = computed(() => route.path)
 
 const logout = () => {
   router.push('/admin/login')
+}
+
+const goShop = () => {
+  window.open('/shop', '_blank')
 }
 </script>
 
@@ -123,5 +130,11 @@ const logout = () => {
 
 .layout-main {
   padding: 18px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 </style>

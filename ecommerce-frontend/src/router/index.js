@@ -12,6 +12,7 @@ import MerchantDashboard from '../views/MerchantDashboard.vue'
 import MerchantProfile from '../views/MerchantProfile.vue'
 import MerchantProduct from '../views/MerchantProduct.vue'
 import MerchantOrder from '../views/MerchantOrder.vue'
+import Shop from '../views/Shop.vue'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: '/merchant/login',
     name: 'MerchantLogin',
     component: MerchantLogin
+  },
+  {
+    path: '/shop',
+    name: 'Shop',
+    component: Shop
   },
   {
     path: '/admin',
