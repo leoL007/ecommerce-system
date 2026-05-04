@@ -1,4 +1,4 @@
-﻿package com.example.ecommerce.controller;
+package com.example.ecommerce.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.ecommerce.common.Result;
